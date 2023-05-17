@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbordin <rbordin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 11:13:23 by rbordin           #+#    #+#             */
-/*   Updated: 2023/05/09 14:14:10 by rbordin          ###   ########.fr       */
+/*   Created: 2023/05/10 16:32:02 by rbordin           #+#    #+#             */
+/*   Updated: 2023/05/11 15:45:49 by rbordin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,32 @@ int	ft_atoi(const char *str)
 		i++;
 	}	
 	return ((int)(sign * j));
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*a;
+	int		i;
+
+	i = 0;
+	if (count == SIZE_MAX && size == SIZE_MAX)
+		return (NULL);
+	a = (void *)malloc(count * size);
+	if (a == NULL)
+		return (NULL);
+	ft_bzero(a, (count * size));
+	return (a);
+}
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s && !n)
+		return ;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = '\0';
+		i++;
+	}
 }
