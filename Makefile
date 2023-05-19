@@ -6,7 +6,7 @@
 #    By: rbordin <rbordin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 16:09:01 by rbordin           #+#    #+#              #
-#    Updated: 2023/05/10 16:30:58 by rbordin          ###   ########.fr        #
+#    Updated: 2023/05/19 09:57:36 by rbordin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ MAKEFLAGS += --silent
 
 SRC = philo.c \
 	utils.c \
+	setting.c \
+	extra.c \
 
 
 OBJ = ${SRC:.c=.o}

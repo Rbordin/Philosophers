@@ -6,45 +6,43 @@
 /*   By: rbordin <rbordin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:32:02 by rbordin           #+#    #+#             */
-/*   Updated: 2023/05/11 15:45:49 by rbordin          ###   ########.fr       */
+/*   Updated: 2023/05/19 12:21:22 by rbordin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_sign(char c)
+void	print_error(void)
 {
-	int	sign;
-
-	sign = 1;
-	if (c == '-')
-		sign *= -1;
-	return (sign);
+	ft_printf("Error\n");
+	exit(1);
 }
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	j;
-	int	sign;
+	int			sign;
+	int			i;
+	long int	result;
 
 	i = 0;
-	j = 0;
 	sign = 1;
-	while ((str[i] != '\0' && (str[i] >= 9 && str[i] <= 13))
-		|| str[i] == 32 || str[i] == '\t')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	result = 0;
+	if (str[i] == '-')
 	{
-		sign *= ft_sign(str[i]);
+		sign = -1;
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
+	while (str[i])
 	{
-		j = (j * 10) + (str[i] - 48);
+		if (ft_is_digit(str[i]) == 0)
+			print_error();
+		result = result * 10;
+		result = result + str[i] - '0';
 		i++;
-	}	
-	return ((int)(sign * j));
+	}
+	if ((result * sign) > 2147483647 || (result * sign) < -2147483648)
+		print_error();
+	return (result * sign);
 }
 
 void	*ft_calloc(size_t count, size_t size)
@@ -73,4 +71,11 @@ void	ft_bzero(void *s, size_t n)
 		((unsigned char *)s)[i] = '\0';
 		i++;
 	}
+}
+
+int	ft_is_digit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
