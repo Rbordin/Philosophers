@@ -6,15 +6,15 @@
 /*   By: rbordin <rbordin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:32:02 by rbordin           #+#    #+#             */
-/*   Updated: 2023/05/19 12:21:22 by rbordin          ###   ########.fr       */
+/*   Updated: 2023/05/26 16:20:01 by rbordin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_error(void)
+void	print_error(char *str)
 {
-	ft_printf("Error\n");
+	printf("Error: %s\n", str);
 	exit(1);
 }
 
@@ -35,13 +35,13 @@ int	ft_atoi(const char *str)
 	while (str[i])
 	{
 		if (ft_is_digit(str[i]) == 0)
-			print_error();
+			print_error("given data are not numerical\n");
 		result = result * 10;
 		result = result + str[i] - '0';
 		i++;
 	}
 	if ((result * sign) > 2147483647 || (result * sign) < -2147483648)
-		print_error();
+		print_error("one of the given number is either too big or too small\n");
 	return (result * sign);
 }
 
@@ -59,6 +59,7 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(a, (count * size));
 	return (a);
 }
+
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;

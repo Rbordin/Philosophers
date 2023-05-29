@@ -6,15 +6,11 @@
 #    By: rbordin <rbordin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 16:09:01 by rbordin           #+#    #+#              #
-#    Updated: 2023/05/19 09:57:36 by rbordin          ###   ########.fr        #
+#    Updated: 2023/05/29 11:44:19 by rbordin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
-
-PRINTF_PATH = ./ft_printf
-
-PRINTF = $(PRINTF_PATH)/libftprintf.a
+NAME = philo
 
 MAKEFLAGS += --silent
 
@@ -22,7 +18,6 @@ SRC = philo.c \
 	utils.c \
 	setting.c \
 	extra.c \
-
 
 OBJ = ${SRC:.c=.o}
 
@@ -33,26 +28,20 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -g
 
 .o:.c
-		${cc} ${CFLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 all: ${NAME} 
 
-${NAME}: ${OBJ} ${PRINTF}
-		${CC} ${OBJ} ${PRINTF} -o ${NAME}
-		@echo "\033[32mCompiled OK!\033[0m"
+${NAME}: ${OBJ} 
+		${CC} ${OBJ} -o ${NAME}
+		@echo "\033[32mPhilosophers are ready to eat!\033[0m"
 
-${PRINTF}:
-		make -C ${PRINTF_PATH}		
-		
 clean:
 		${RM} ${OBJ}
-		make clean -C ${PRINTF_PATH}
-		@echo "\033[35mCleaned everything!\033[0m"
+		@echo "\033[35mDining table has been cleaned!\033[0m"
 		
 fclean: clean
-
-		${RM} ${PRINTF}
 		${RM} ${NAME}
 
 re: fclean all
-
+		@echo "\033[36mDining table is ready again!\033[0m"
